@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UdemyRabbitMQWeb.Watermark.Models.Product>
+﻿@model IEnumerable<Watermark.Models.Product>
 
 @{
     ViewData["Title"] = "Index";
@@ -41,11 +41,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ImageName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

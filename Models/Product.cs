@@ -17,8 +17,7 @@ public class Product
 
     [Range(1,100)]
     public int Stock {get; set; }
+
     [StringLength(150)]
-    public string PicUrl { get; set; }
-
-
+    public string ImageName { get; set; }
 }

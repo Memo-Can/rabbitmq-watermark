@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
+using Watermark.BackgroundServices;
 using Watermark.Models;
 using Watermark.Services;
 
@@ -15,11 +16,12 @@ builder.Services.AddDbContext<AppDbContext>(o=>{
 });
 
 builder.Services.AddSingleton(sp=> new ConnectionFactory(){
-    Uri=new Uri(builder.Configuration.GetConnectionString("RabbitMq"))
+    Uri=new Uri(builder.Configuration.GetConnectionString("RabbitMQ"))
 });
 
-builder.Services.AddSingleton<RabbitMqService>();
-
+builder.Services.AddSingleton<RabbitMQService>();
+builder.Services.AddSingleton<RabbitMQPublisher>();
+builder.Services.AddHostedService<ImageBackgroundService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,6 +42,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Products}/{action=Create}/{id?}");
 
 app.Run();

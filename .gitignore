@@ -1,3 +1,5 @@
 **/bin
 **/obj
 **/Debug
+appsettings.json
+**/wwwroot/images
